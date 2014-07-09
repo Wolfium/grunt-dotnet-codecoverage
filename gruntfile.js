@@ -62,6 +62,10 @@ module.exports = function(grunt) {
                     opencoverExe: 'test space included path/test/src/packages/OpenCover.4.5.2316/OpenCover.Console.exe',
                     reportGeneratorExe: 'test space included path/test/src/packages/ReportGenerator.1.9.1.0/ReportGenerator.exe',
                     target: 'test space included path/test/src/packages/Machine.Specifications.0.6.2/tools/mspec-clr4.exe',
+                    targetArgs: [
+                        '--xml', 'C:/GIT/grunt-dotnet-codecoverage/trunk/reports space included path/index.xml',
+                        '--html', 'C:/GIT/grunt-dotnet-codecoverage/trunk/reports space included path'
+                    ],
                     output: 'reports space included path/codecoverage',
                 },
                 src: ['test/space included path/src/MySpecs/bin/**/Debug/*Specs.dll']

@@ -53,10 +53,19 @@ exports.codecoverage = {
         test.done();
     },
     opencover_with_spaces: function (test) {
-        test.expect(1);
+        test.expect(4);
 
         var coverage_output_xml_exists = grunt.file.exists('reports space included path/codecoverage/coverage-output.xml');
         test.ok(coverage_output_xml_exists, 'reports space included path/codecoverage/coverage-output.xml should exist');
+
+        var target_output_xml_exists = grunt.file.exists('reports space included path/index.xml');
+        test.ok(target_output_xml_exists, 'reports space included path/index.xml should exist');
+
+        var target_output_html_exists = grunt.file.exists('reports space included path/index.html');
+        test.ok(target_output_html_exists, 'reports space included path/index.html should exist');
+
+        var asm_output_html_exists = grunt.file.exists('reports space included path/MySpecs.html');
+        test.ok(asm_output_html_exists, 'reports space included path/MySpecs should exist');
 
         test.done();
     },

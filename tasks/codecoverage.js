@@ -34,9 +34,14 @@ var path = require('path'),
             target = options.target;
             args.push('-target:' + target);
         }
-        if (assemblies) {
-            args.push('-targetargs:' + assemblies.join(' '));
+        var targetArgs = '';
+        if (options.targetArgs) {
+            targetArgs = targetArgs + ' \"' + options.targetArgs.join('\" \"') + '\"';
         }
+        if (assemblies) {
+            targetArgs = targetArgs + ' ' + assemblies.join(' ');
+        }
+        args.push('-targetargs:' + targetArgs);
         if (options.output) {
             var filePath = path.join(process.cwd(), options.output);
             grunt.file.mkdir(filePath);
