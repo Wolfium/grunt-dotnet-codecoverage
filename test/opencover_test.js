@@ -52,4 +52,29 @@ exports.codecoverage = {
 
         test.done();
     },
+    opencover_with_spaces: function (test) {
+        test.expect(1);
+
+        var coverage_output_xml_exists = grunt.file.exists('reports space included path/codecoverage/coverage-output.xml');
+        test.ok(coverage_output_xml_exists, 'reports space included path/codecoverage/coverage-output.xml should exist');
+
+        test.done();
+    },
+    reportgenerator_with_spaces: function (test) {
+        test.expect(5);
+
+        var index_html_exists = grunt.file.exists('reports space included path/codecoverage/index.htm');
+        var report_css_exists = grunt.file.exists('reports space included path/codecoverage/report.css');
+        var combined_js_exists = grunt.file.exists('reports space included path/codecoverage/combined.js');
+        var mycode_calculator_html_exists = grunt.file.exists('reports space included path/codecoverage/MyCode_Calculator.htm');
+        var summary_xml_exists = grunt.file.exists('reports space included path/codecoverage/summary.xml');
+
+        test.ok(index_html_exists, 'reports space included path/codecoverage/index.xml should exist');
+        test.ok(report_css_exists, 'reports space included path/codecoverage/report.css should exist');
+        test.ok(combined_js_exists, 'reports space included path/codecoverage/combined.js should exist');
+        test.ok(mycode_calculator_html_exists, 'reports space included path/codecoverage/MyCode_Calculator.htm should exist');
+        test.ok(summary_xml_exists, 'reports space included path/codecoverage/summary.xml should exist');
+
+        test.done();
+    },
 };

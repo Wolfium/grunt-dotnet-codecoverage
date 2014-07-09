@@ -20,7 +20,7 @@ var path = require('path'),
         }
         opencover = opencover.replace(/\\/g, path.sep);
         var assemblies = files.map(function(file) {
-            return '"' + file.src + '"';
+            return '\"' + path.normalize(file.src) + '\"';
         });
 
         if (options.registerUser) {
@@ -32,15 +32,15 @@ var path = require('path'),
                 options.target = path.join(process.cwd(), options.target);
             }
             target = options.target;
-            args.push('"-target:"' + target + '""');
+            args.push('-target:' + target);
         }
         if (assemblies) {
-            args.push('"-targetargs:"' + assemblies.join('" "') + '""');
+            args.push('-targetargs:' + assemblies.join(' '));
         }
         if (options.output) {
             var filePath = path.join(process.cwd(), options.output);
             grunt.file.mkdir(filePath);
-            args.push('"-output:' + path.join(options.output, 'coverage-output.xml') + '"');
+            args.push('-output:' + path.join(options.output, 'coverage-output.xml'));
         }
 
         return {
@@ -60,11 +60,11 @@ var path = require('path'),
         }
 
         if (options.output) {
-            args.push('"-reports:"' + opencoverOutput + '""');
-            args.push('"-targetDir:"' + options.output + '""');
+            args.push('-reports:' + opencoverOutput);
+            args.push('-targetDir:' + options.output);
         }
         if (options.reportTypes) {
-            args.push('"-reporttypes:"' + options.reportTypes.join(';') + '"');
+            args.push('-reporttypes:' + options.reportTypes.join(';'));
         }
 
         return {
@@ -78,10 +78,7 @@ var path = require('path'),
         };
         var childProcess = grunt.util.spawn({
             cmd: command.path,
-            args: command.args,
-            opts: {
-                windowsVerbatimArguments: true
-            }
+            args: command.args
         }, processCallback);
 
         childProcess.stdout.on('data', log);
