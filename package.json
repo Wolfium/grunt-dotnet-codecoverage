@@ -1,7 +1,7 @@
 {
     "name": "grunt-dotnet-codecoverage",
     "description": "Grunt plugin to generate code coverage report using opencover and reportgenerator",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "homepage": "https://github.com/marcofranssen/grunt-dotnet-codecoverage",
     "author": {
         "name": "Marco Franssen",
