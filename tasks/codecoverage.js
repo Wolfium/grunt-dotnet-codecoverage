@@ -23,6 +23,13 @@ var path = require('path'),
             return '\"' + path.normalize(file.src) + '\"';
         });
 
+        // Change default behaviour of OpenCover to always return target's return code instead itself return code
+        // Hack to minimize false positives when target fails with a return code was not passing outside OpenCover
+        if (!options.returntargetcode) {
+          options.returntargetcode = 2222;
+        }
+        args.push('-returntargetcode:' + options.returntargetcode);
+ 
         if (options.registerUser) {
             args.push('-register:user');
         }
